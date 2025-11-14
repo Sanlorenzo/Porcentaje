@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Porcentaje Piscina</title>
+</head>
+<body>
+    <h2>Porcentaje Piscina </h2>
+
+    <label for="valor">Valor Sensor:</label>
+    <input type="number" id="valor" step="any">
+
+    <br><br>
+
+    <label for="tipoFormula">Selecciona el tipo de fórmula:</label>
+    <select id="tipoFormula">
+        <option value="monumental">Monumental</option>
+        <option value="fedora">Fedora</option>
+        <option value="fermina_alto">Fermina Alto</option>
+        <option value="sabina">Sabina</option>
+        <option value="soledad_riego">Soledad Riego</option>
+        <option value="fermina_bajo">Fermina Bajo</option>
+        <option value="soledad_sr">Soledad SR</option>
+        <option value="facunda">Facunda</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <p>Resultado: <span id="resultado"></span></p>
+
+    <script>
+        function calcular() {
+            const x = parseFloat(document.getElementById('valor').value);
+            const tipo = document.getElementById('tipoFormula').value;
+
+            if (isNaN(x)) {
+                document.getElementById('resultado').textContent = 'Ingresa un número válido';
+                return;
+            }
+
+            let valorEntregado;
+
+            switch (tipo) {
+
+                case 'monumental':
+                    valorEntregado = (100*(5995 * x + 503.68 * x**2 + 14.11 * x**3))/38462;
+                    break;
+
+                case 'fedora':
+                    valorEntregado = (100*(488 * x + 41.26 * x**2 + 1.16 * x**3))/1867;
+                    break;
+
+                case 'fermina_alto':
+                    valorEntregado = (100*(693 * x + 80.97 * x**2 + 3.15 * x**3))/2892;
+                    break;
+
+                case 'sabina':
+                    valorEntregado = (100*(918 * x + 59.13 * x**2 + 1.27 * x**3))/3190;
+                    break;
+
+                case 'soledad_riego':
+                    valorEntregado = (100*(1400 * x + 119.92 * x**2 + 3.42 * x**3))/5372;
+                    break;
+
+                case 'fermina_bajo':
+                    valorEntregado = (100*(1207 * x + 129.32 * x**2 + 4.617 * x**3))/6122;
+                    break;
+
+                case 'soledad_sr':
+                    valorEntregado = (100*(2514.3865 * x + 374.2769 * x**2 + 18.57094 * x**3))/17235;
+                    break;
+
+                case 'facunda':
+                    valorEntregado = (100*(2514.3865 * x + 374.2769 * x**2 + 18.57094 * x**3))/17235;
+                    break;
+
+                default:
+                    valorEntregado = 0;
+            }
+
+            // Mostrar valor con 2 decimales + %
+            document.getElementById('resultado').textContent = valorEntregado.toFixed(2) + " %";
+        }
+    </script>
+</body>
+</html>
